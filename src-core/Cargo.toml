@@ -46,7 +46,7 @@ r2d2 = "0.8"
 # Runtime
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync"] }
 tokio-tungstenite = { version = "0.26.1", features = ["native-tls"] }
-prost = "0.13"
+prost = "0.14"
 futures-util = "0.3"
 base64 = "0.22"
 

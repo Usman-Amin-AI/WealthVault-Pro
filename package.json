@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.2.7",
-    "@hookform/resolvers": "^5.2.2",
+    "@hookform/resolvers": "^5.7.1",
     "@internationalized/date": "^3.10.0",
     "@investwise/ui": "workspace:*",
     "@number-flow/react": "^0.5.10",

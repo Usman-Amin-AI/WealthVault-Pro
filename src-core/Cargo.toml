@@ -38,7 +38,7 @@ csv = "1.4.0"
 zip = "2.2.0"
 
 # SQLite / Diesel
-rusqlite = { version = "0.34", features = ["bundled"] }
+rusqlite = { version = "0.40", features = ["bundled"] }
 diesel = { version = "2.2", features = ["sqlite", "chrono", "r2d2", "numeric", "returning_clauses_for_sqlite_3_35"] }
 diesel_migrations = { version = "2.2", features = ["sqlite"] }
 r2d2 = "0.8"

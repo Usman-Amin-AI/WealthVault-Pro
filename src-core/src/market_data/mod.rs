@@ -1,0 +1,25 @@
+pub(crate) mod market_data_constants;
+pub mod market_data_errors;
+pub mod market_data_model;
+pub mod market_data_repository;
+pub mod market_data_service;
+pub mod market_data_traits;
+pub mod live_market_engine;
+
+pub(crate) mod providers;
+
+// Re-export the public interface
+pub use market_data_constants::*;
+pub use market_data_model::{
+    DataSource, ImportValidationStatus, MarketDataProviderInfo, MarketDataProviderSetting, Quote,
+    QuoteImport, QuoteRequest, QuoteSummary,
+};
+pub use market_data_repository::MarketDataRepository;
+pub use market_data_service::MarketDataService;
+pub use market_data_traits::MarketDataServiceTrait;
+
+// Re-export provider types
+pub use providers::market_data_provider::{AssetProfiler, MarketDataProvider};
+
+// Re-export error types for convenience
+pub use market_data_errors::MarketDataError;

@@ -1,0 +1,15 @@
+# Default owners for everything
+* @maintainers
+
+# Frontend
+/src/ @frontend-team
+/packages/ui/ @frontend-team
+
+# Backend
+/src-core/ @backend-team
+/src-tauri/ @backend-team
+/src-server/ @backend-team
+
+# Documentation
+/docs/ @docs-team
+*.md @docs-team

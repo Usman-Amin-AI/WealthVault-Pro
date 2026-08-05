@@ -1,0 +1,13 @@
+# WealthVault Pro
+#
+# This repository is primarily a Node.js + React + Rust + Tauri application.
+# Python requirements are not used by the main application runtime.
+#
+# Use the project toolchain declared in package.json and Cargo.toml instead:
+#   - Node.js 20+
+#   - pnpm
+#   - Rust / Cargo
+#   - Tauri prerequisites for the target operating system
+#
+# If you are using this repository for auxiliary automation or documentation
+# tooling, install those dependencies in your own Python environment separately.

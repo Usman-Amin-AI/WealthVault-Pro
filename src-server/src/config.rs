@@ -1,0 +1,78 @@
+use std::{net::SocketAddr, time::Duration};
+
+use crate::auth::{decode_secret_key, AuthConfig};
+
+pub struct Config {
+    pub listen_addr: SocketAddr,
+    pub db_path: String,
+    pub cors_allow: Vec<String>,
+    pub request_timeout: Duration,
+    pub static_dir: String,
+    pub addons_root: String,
+    pub secret_key: String,
+    pub auth: Option<AuthConfig>,
+}
+
+impl Config {
+    pub fn from_env() -> Self {
+        dotenvy::dotenv().ok();
+        let listen_addr: SocketAddr = std::env::var("WF_LISTEN_ADDR")
+            .unwrap_or_else(|_| "0.0.0.0:8088".to_string())
+            .parse()
+            .expect("Invalid WF_LISTEN_ADDR");
+        let db_path = std::env::var("WF_DB_PATH").unwrap_or_else(|_| "./db/app.db".into());
+        let cors_allow = std::env::var("WF_CORS_ALLOW_ORIGINS")
+            .unwrap_or_else(|_| "*".into())
+            .split(',')
+            .map(|s| s.trim().to_string())
+            .filter(|s| !s.is_empty())
+            .collect();
+        let timeout_ms: u64 = std::env::var("WF_REQUEST_TIMEOUT_MS")
+            .unwrap_or_else(|_| "30000".into())
+            .parse()
+            .unwrap_or(30000);
+        let static_dir = std::env::var("WF_STATIC_DIR").unwrap_or_else(|_| "dist".into());
+        let secret_key = std::env::var("WF_SECRET_KEY")
+            .unwrap_or_else(|_| panic!("WF_SECRET_KEY must be set and contain a 32-byte key"))
+            .trim()
+            .to_string();
+        if secret_key.is_empty() {
+            panic!("WF_SECRET_KEY must not be empty");
+        }
+        let secret_key_bytes = decode_secret_key(&secret_key)
+            .unwrap_or_else(|e| panic!("Failed to decode WF_SECRET_KEY: {e}"));
+        let addons_root = std::env::var("WF_ADDONS_DIR").unwrap_or_else(|_| {
+            std::path::Path::new(&db_path)
+                .parent()
+                .unwrap_or_else(|| std::path::Path::new("."))
+                .to_string_lossy()
+                .into_owned()
+        });
+        let auth = std::env::var("WF_AUTH_PASSWORD_HASH")
+            .ok()
+            .map(|hash| hash.trim().to_string())
+            .filter(|hash| !hash.is_empty())
+            .map(|password_hash| {
+                let ttl_minutes = std::env::var("WF_AUTH_TOKEN_TTL_MINUTES")
+                    .ok()
+                    .and_then(|value| value.parse::<u64>().ok())
+                    .filter(|value| *value > 0)
+                    .unwrap_or(60);
+                AuthConfig {
+                    password_hash,
+                    jwt_secret: secret_key_bytes.clone(),
+                    access_token_ttl: Duration::from_secs(ttl_minutes.saturating_mul(60)),
+                }
+            });
+        Self {
+            listen_addr,
+            db_path,
+            cors_allow,
+            request_timeout: Duration::from_millis(timeout_ms),
+            static_dir,
+            addons_root,
+            secret_key,
+            auth,
+        }
+    }
+}

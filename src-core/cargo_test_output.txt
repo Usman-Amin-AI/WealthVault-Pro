@@ -1,0 +1,1824 @@
+﻿cargo : error[E0432]: unresolved import `crate::errors::AppError`
+At line:1 char:230
++ ... tEnvironmentVariable('Path','User'); cargo test -q --lib 2>&1 | Out-F ...
++                                          ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error[E0432]: u...rors::AppError` 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ --> src\profiles\profiles_repository.rs:3:21
+  |
+3 | use crate::errors::{AppError, Result};
+  |                     ^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\profiles\profiles_service.rs:3:21
+  |
+3 | use crate::errors::{AppError, Result};
+  |                     ^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\brokers\ibkr.rs:6:5
+  |
+6 | use crate::errors::AppError;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\brokers\oauth2.rs:6:5
+  |
+6 | use crate::errors::AppError;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::db::connection`
+ --> src\brokers\repository.rs:4:16
+  |
+4 | use crate::db::connection::get_connection;
+  |                ^^^^^^^^^^ could not find `connection` in `db`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\brokers\repository.rs:5:5
+  |
+5 | use crate::errors::AppError;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\brokers\schwab.rs:6:5
+  |
+6 | use crate::errors::AppError;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+ --> src\brokers\service.rs:4:5
+  |
+4 | use crate::errors::AppError;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+error[E0432]: unresolved import `crate::errors::AppError`
+  --> src\brokers\mod.rs:10:5
+   |
+10 | use crate::errors::AppError;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ no `AppError` in `errors`
+
+warning: unused imports: `debug` and `info`
+ --> src\market_data\live_market_engine.rs:3:11
+  |
+3 | use log::{debug, error, info};
+  |           ^^^^^         ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `tokio::sync::RwLock`
+ --> src\market_data\live_market_engine.rs:6:5
+  |
+6 | use tokio::sync::RwLock;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::market_data::market_data_model::LivePriceDb`
+  --> src\market_data\live_market_engine.rs:11:5
+   |
+11 | use crate::market_data::market_data_model::LivePriceDb;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `DateTime`
+ --> src\market_data\providers\yahoo_websocket.rs:3:14
+  |
+3 | use chrono::{DateTime, Utc, TimeZone};
+  |              ^^^^^^^^
+
+warning: unused import: `DateTime`
+ --> src\market_data\providers\polygon_websocket.rs:2:14
+  |
+2 | use chrono::{DateTime, Utc, TimeZone};
+  |              ^^^^^^^^
+
+warning: unused import: `PORTFOLIO_TOTAL_ACCOUNT_ID`
+ --> src\portfolio\snapshot\snapshot_service.rs:6:43
+  |
+6 | use crate::constants::{DECIMAL_PRECISION, PORTFOLIO_TOTAL_ACCOUNT_ID, 
+get_total_account_id};
+  |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `NewProfileShare`, `NewProfile`, and `ProfileShare`
+ --> src\profiles\profiles_service.rs:1:29
+  |
+1 | use super::profiles_model::{NewProfile, Profile, ProfileShare, 
+NewProfileShare};
+  |                             ^^^^^^^^^^           ^^^^^^^^^^^^  
+^^^^^^^^^^^^^^^
+
+warning: unused import: `NaiveDateTime`
+ --> src\brokers\service.rs:1:29
+  |
+1 | use chrono::{Duration, Utc, NaiveDateTime};
+  |                             ^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src\brokers\service.rs:2:5
+  |
+2 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0046]: not all trait items implemented, missing: `get_live_prices`, 
+`start_live_stream`, `subscribe_live_prices`
+   --> src\portfolio\holdings\holdings_valuation_service_tests.rs:161:5
+    |
+161 |     impl MarketDataServiceTrait for MockMarketDataService {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing 
+`get_live_prices`, `start_live_stream`, `subscribe_live_prices` in 
+implementation
+    |
+   ::: src\market_data\market_data_traits.rs:71:5
+    |
+ 71 |     async fn get_live_prices(&self, symbols: &[String]) -> 
+Result<HashMap<String, crate::market_data::market_data_model::LivePrice>>;
+    |     ---------------------------------------------------------------------
+------------------------------------------------------------ `get_live_prices` 
+from trait
+ 72 |     async fn start_live_stream(&self, symbols: Vec<String>, provider: 
+&str) -> Result<()>;
+    |     ---------------------------------------------------------------------
+----------------- `start_live_stream` from trait
+ 73 |     fn subscribe_live_prices(&self) -> tokio::sync::broadcast::Receiver<c
+rate::market_data::market_data_model::LivePrice>;
+    |     ---------------------------------------------------------------------
+------------------------------------------------- `subscribe_live_prices` from 
+trait
+
+error[E0050]: method `calculate_holdings_snapshots` has 2 parameters but the 
+declaration in trait 
+`snapshot_service::SnapshotServiceTrait::calculate_holdings_snapshots` has 3
+   --> src\portfolio\snapshot\snapshot_service.rs:983:43
+    |
+ 28 |     async fn calculate_holdings_snapshots(&self, account_ids: 
+Option<&[String]>, profile_id: &str) -> Result<usize>;
+    |                                           
+------------------------------------------------------- trait requires 3 
+parameters
+...
+983 |     async fn calculate_holdings_snapshots(&self, account_ids: 
+Option<&[String]>) -> Result<usize> {
+    |                                           
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters, found 2
+
+error[E0050]: method `force_recalculate_holdings_snapshots` has 2 parameters 
+but the declaration in trait 
+`snapshot_service::SnapshotServiceTrait::force_recalculate_holdings_snapshots` 
+has 3
+   --> src\portfolio\snapshot\snapshot_service.rs:989:9
+    |
+ 35 | /         &self,
+ 36 | |         account_ids: Option<&[String]>,
+ 37 | |         profile_id: &str,
+    | |________________________- trait requires 3 parameters
+...
+989 | /         &self,
+990 | |         account_ids: Option<&[String]>,
+    | |______________________________________^ expected 3 parameters, found 2
+
+error[E0050]: method `get_by_id` has 2 parameters but the declaration in trait 
+`AccountRepositoryTrait::get_by_id` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:279:22
+    |
+279 |         fn get_by_id(&self, id: &str) -> AppResult<Account> {
+    |                      ^^^^^^^^^^^^^^^ expected 3 parameters, found 2
+    |
+   ::: src\accounts\accounts_traits.rs:17:18
+    |
+ 17 |     fn get_by_id(&self, account_id: &str, profile_id: &str) -> 
+Result<Account>;
+    |                  ----------------------------------------- trait 
+requires 3 parameters
+
+error[E0050]: method `list` has 3 parameters but the declaration in trait 
+`AccountRepositoryTrait::list` has 4
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:288:13
+    |
+288 | /             &self,
+289 | |             active_only: Option<bool>,
+290 | |             account_ids: Option<&[String]>,
+    | |__________________________________________^ expected 4 parameters, 
+found 3
+    |
+   ::: src\accounts\accounts_traits.rs:19:9
+    |
+ 19 | /         &self,
+ 20 | |         is_active_filter: Option<bool>,
+ 21 | |         account_ids: Option<&[String]>,
+ 22 | |         profile_id: &str,
+    | |________________________- trait requires 4 parameters
+
+error[E0050]: method `update` has 2 parameters but the declaration in trait 
+`AccountRepositoryTrait::update` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:306:25
+    |
+306 |         async fn update(&self, _account_update: AccountUpdate) -> 
+AppResult<Account> {
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 
+parameters, found 2
+    |
+   ::: src\accounts\accounts_traits.rs:15:21
+    |
+ 15 |     async fn update(&self, account_update: AccountUpdate, profile_id: 
+&str) -> Result<Account>;
+    |                     
+------------------------------------------------------ trait requires 3 
+parameters
+
+error[E0050]: method `delete` has 2 parameters but the declaration in trait 
+`AccountRepositoryTrait::delete` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:309:25
+    |
+309 |         async fn delete(&self, _id: &str) -> AppResult<usize> {
+    |                         ^^^^^^^^^^^^^^^^ expected 3 parameters, found 2
+    |
+   ::: src\accounts\accounts_traits.rs:16:21
+    |
+ 16 |     async fn delete(&self, account_id: &str, profile_id: &str) -> 
+Result<usize>;
+    |                     ----------------------------------------- trait 
+requires 3 parameters
+
+error[E0050]: method `get_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::get_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:330:25
+    |
+330 |         fn get_activity(&self, _activity_id: &str) -> 
+AppResult<Activity> {
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters, 
+found 2
+    |
+   ::: src\activities\activities_traits.rs:12:21
+    |
+ 12 |     fn get_activity(&self, activity_id: &str, profile_id: &str) -> 
+Result<Activity>;
+    |                     ------------------------------------------ trait 
+requires 3 parameters
+
+error[E0050]: method `get_activities` has 1 parameter but the declaration in 
+trait `ActivityRepositoryTrait::get_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:333:27
+    |
+333 |         fn get_activities(&self) -> AppResult<Vec<Activity>> {
+    |                           ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:13:23
+    |
+ 13 |     fn get_activities(&self, profile_id: &str) -> Result<Vec<Activity>>;
+    |                       ----------------------- trait requires 2 parameters
+
+error[E0050]: method `get_activities_by_account_id` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_activities_by_account_id` 
+has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:336:41
+    |
+336 |         fn get_activities_by_account_id(&self, _account_id: &str) -> 
+AppResult<Vec<Activity>> {
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^^ 
+expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:14:37
+    |
+ 14 |     fn get_activities_by_account_id(&self, account_id: &str, profile_id: 
+&str) -> Result<Vec<Activity>>;
+    |                                     
+----------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `get_activities_by_account_ids` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_activities_by_account_ids` 
+has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:340:13
+    |
+340 | /             &self,
+341 | |             _account_ids: &[String],
+    | |___________________________________^ expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:15:38
+    |
+ 15 |       fn get_activities_by_account_ids(&self, account_ids: &[String], 
+profile_id: &str) -> Result<Vec<Activity>>;
+    |                                        
+----------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `get_trading_activities` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_trading_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:345:35
+    |
+345 |         fn get_trading_activities(&self) -> AppResult<Vec<Activity>> {
+    |                                   ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:16:31
+    |
+ 16 |     fn get_trading_activities(&self, profile_id: &str) -> 
+Result<Vec<Activity>>;
+    |                               ----------------------- trait requires 2 
+parameters
+
+error[E0050]: method `get_income_activities` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_income_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:348:34
+    |
+348 |         fn get_income_activities(&self) -> AppResult<Vec<Activity>> {
+    |                                  ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:17:30
+    |
+ 17 |     fn get_income_activities(&self, profile_id: &str) -> 
+Result<Vec<Activity>>;
+    |                              ----------------------- trait requires 2 
+parameters
+
+error[E0050]: method `get_deposit_activities` has 4 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_deposit_activities` has 5
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:352:13
+    |
+352 | /             &self,
+353 | |             _account_ids: &[String],
+354 | |             _start_date: NaiveDateTime,
+355 | |             _end_date: NaiveDateTime,
+    | |____________________________________^ expected 5 parameters, found 4
+    |
+   ::: src\activities\activities_traits.rs:20:9
+    |
+ 20 | /         &self,
+ 21 | |         account_ids: &[String],
+ 22 | |         start_date: NaiveDateTime,
+ 23 | |         end_date: NaiveDateTime,
+ 24 | |         profile_id: &str,
+    | |________________________- trait requires 5 parameters
+
+error[E0050]: method `search_activities` has 7 parameters but the declaration 
+in trait `ActivityRepositoryTrait::search_activities` has 8
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:360:13
+    |
+360 | /             &self,
+361 | |             _page: i64,
+362 | |             _page_size: i64,
+363 | |             _account_id_filter: Option<Vec<String>>,
+364 | |             _activity_type_filter: Option<Vec<String>>,
+365 | |             _asset_id_keyword: Option<String>,
+366 | |             _sort: Option<ActivitySort>,
+    | |_______________________________________^ expected 8 parameters, found 7
+    |
+   ::: src\activities\activities_traits.rs:27:9
+    |
+ 27 | /         &self,
+ 28 | |         page: i64,
+ 29 | |         page_size: i64,
+ 30 | |         account_id_filter: Option<Vec<String>>,
+...   |
+ 33 | |         sort: Option<Sort>,
+ 34 | |         profile_id: &str,
+    | |________________________- trait requires 8 parameters
+
+error[E0050]: method `create_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::create_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:370:34
+    |
+370 |         async fn create_activity(&self, _new_activity: NewActivity) -> 
+AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:36:30
+    |
+ 36 |     async fn create_activity(&self, new_activity: NewActivity, 
+profile_id: &str) -> Result<Activity>;
+    |                              
+-------------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `update_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::update_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:373:34
+    |
+373 |         async fn update_activity(&self, _activity_update: 
+ActivityUpdate) -> AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:37:30
+    |
+ 37 |     async fn update_activity(&self, activity_update: ActivityUpdate, 
+profile_id: &str) -> Result<Activity>;
+    |                              
+-------------------------------------------------------- trait requires 3 
+parameters
+
+error[E0050]: method `delete_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::delete_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:376:34
+    |
+376 |         async fn delete_activity(&self, _activity_id: String) -> 
+AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 
+parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:38:30
+    |
+ 38 |     async fn delete_activity(&self, activity_id: String, profile_id: 
+&str) -> Result<Activity>;
+    |                              
+-------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `bulk_mutate_activities` has 4 parameters but the 
+declaration in trait `ActivityRepositoryTrait::bulk_mutate_activities` has 5
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:380:13
+    |
+380 | /             &self,
+381 | |             _creates: Vec<NewActivity>,
+382 | |             _updates: Vec<ActivityUpdate>,
+383 | |             _delete_ids: Vec<String>,
+    | |____________________________________^ expected 5 parameters, found 4
+    |
+   ::: src\activities\activities_traits.rs:40:9
+    |
+ 40 | /         &self,
+ 41 | |         creates: Vec<NewActivity>,
+ 42 | |         updates: Vec<ActivityUpdate>,
+ 43 | |         delete_ids: Vec<String>,
+ 44 | |         profile_id: &str,
+    | |________________________- trait requires 5 parameters
+
+error[E0050]: method `create_activities` has 2 parameters but the declaration 
+in trait `ActivityRepositoryTrait::create_activities` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:387:36
+    |
+387 |         async fn create_activities(&self, _activities: Vec<NewActivity>) 
+-> AppResult<usize> {
+    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:46:32
+    |
+ 46 |     async fn create_activities(&self, activities: Vec<NewActivity>, 
+profile_id: &str) -> Result<usize>;
+    |                                
+----------------------------------------------------- trait requires 3 
+parameters
+
+error[E0050]: method `get_first_activity_date` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_first_activity_date` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:391:13
+    |
+391 | /             &self,
+392 | |             _account_ids: Option<&[String]>,
+    | |___________________________________________^ expected 3 parameters, 
+found 2
+    |
+   ::: src\activities\activities_traits.rs:48:9
+    |
+ 48 | /         &self,
+ 49 | |         account_ids: Option<&[String]>,
+ 50 | |         profile_id: &str,
+    | |________________________- trait requires 3 parameters
+
+error[E0050]: method `get_import_mapping` has 2 parameters but the declaration 
+in trait `ActivityRepositoryTrait::get_import_mapping` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:397:13
+    |
+397 | /             &self,
+398 | |             _account_id: &str,
+    | |_____________________________^ expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:52:27
+    |
+ 52 |       fn get_import_mapping(&self, account_id: &str, profile_id: &str) 
+-> Result<Option<ImportMapping>>;
+    |                             ----------------------------------------- 
+trait requires 3 parameters
+
+error[E0050]: method `calculate_average_cost` has 3 parameters but the 
+declaration in trait `ActivityRepositoryTrait::calculate_average_cost` has 4
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:405:35
+    |
+405 |         fn calculate_average_cost(&self, _account_id: &str, _asset_id: 
+&str) -> AppResult<Decimal> {
+    |                                   
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 4 parameters, found 3
+    |
+   ::: src\activities\activities_traits.rs:55:31
+    |
+ 55 |     fn calculate_average_cost(&self, account_id: &str, asset_id: &str, 
+profile_id: &str) -> Result<Decimal>;
+    |                               
+--------------------------------------------------------- trait requires 4 
+parameters
+
+error[E0050]: method `get_income_activities_data` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_income_activities_data` has 
+2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:408:39
+    |
+408 |         fn get_income_activities_data(&self) -> 
+AppResult<Vec<ActivityIncomeData>> {
+    |                                       ^^^^^ expected 2 parameters, found 
+1
+    |
+   ::: src\activities\activities_traits.rs:56:35
+    |
+ 56 |     fn get_income_activities_data(&self, profile_id: &str) -> 
+Result<Vec<IncomeData>>;
+    |                                   ----------------------- trait requires 
+2 parameters
+
+error[E0050]: method `get_first_activity_date_overall` has 1 parameter but the 
+declaration in trait 
+`ActivityRepositoryTrait::get_first_activity_date_overall` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:411:44
+    |
+411 |         fn get_first_activity_date_overall(&self) -> 
+AppResult<DateTime<Utc>> {
+    |                                            ^^^^^ expected 2 parameters, 
+found 1
+    |
+   ::: src\activities\activities_traits.rs:57:40
+    |
+ 57 |     fn get_first_activity_date_overall(&self, profile_id: &str) -> 
+Result<DateTime<Utc>>;
+    |                                        ----------------------- trait 
+requires 2 parameters
+
+error[E0050]: method `get_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::get_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:427:25
+    |
+427 |         fn get_activity(&self, activity_id: &str) -> AppResult<Activity> 
+{
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 parameters, 
+found 2
+    |
+   ::: src\activities\activities_traits.rs:12:21
+    |
+ 12 |     fn get_activity(&self, activity_id: &str, profile_id: &str) -> 
+Result<Activity>;
+    |                     ------------------------------------------ trait 
+requires 3 parameters
+
+error[E0050]: method `get_activities` has 1 parameter but the declaration in 
+trait `ActivityRepositoryTrait::get_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:434:27
+    |
+434 |         fn get_activities(&self) -> AppResult<Vec<Activity>> {
+    |                           ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:13:23
+    |
+ 13 |     fn get_activities(&self, profile_id: &str) -> Result<Vec<Activity>>;
+    |                       ----------------------- trait requires 2 parameters
+
+error[E0050]: method `get_activities_by_account_id` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_activities_by_account_id` 
+has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:437:41
+    |
+437 |         fn get_activities_by_account_id(&self, account_id: &str) -> 
+AppResult<Vec<Activity>> {
+    |                                         ^^^^^^^^^^^^^^^^^^^^^^^ expected 
+3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:14:37
+    |
+ 14 |     fn get_activities_by_account_id(&self, account_id: &str, profile_id: 
+&str) -> Result<Vec<Activity>>;
+    |                                     
+----------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `get_activities_by_account_ids` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_activities_by_account_ids` 
+has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:446:13
+    |
+446 | /             &self,
+447 | |             account_ids: &[String],
+    | |__________________________________^ expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:15:38
+    |
+ 15 |       fn get_activities_by_account_ids(&self, account_ids: &[String], 
+profile_id: &str) -> Result<Vec<Activity>>;
+    |                                        
+----------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `get_trading_activities` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_trading_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:456:35
+    |
+456 |         fn get_trading_activities(&self) -> AppResult<Vec<Activity>> {
+    |                                   ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:16:31
+    |
+ 16 |     fn get_trading_activities(&self, profile_id: &str) -> 
+Result<Vec<Activity>>;
+    |                               ----------------------- trait requires 2 
+parameters
+
+error[E0050]: method `get_income_activities` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_income_activities` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:459:34
+    |
+459 |         fn get_income_activities(&self) -> AppResult<Vec<Activity>> {
+    |                                  ^^^^^ expected 2 parameters, found 1
+    |
+   ::: src\activities\activities_traits.rs:17:30
+    |
+ 17 |     fn get_income_activities(&self, profile_id: &str) -> 
+Result<Vec<Activity>>;
+    |                              ----------------------- trait requires 2 
+parameters
+
+error[E0050]: method `get_deposit_activities` has 4 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_deposit_activities` has 5
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:463:13
+    |
+463 | /             &self,
+464 | |             _ids: &[String],
+465 | |             _s: NaiveDateTime,
+466 | |             _e: NaiveDateTime,
+    | |_____________________________^ expected 5 parameters, found 4
+    |
+   ::: src\activities\activities_traits.rs:20:9
+    |
+ 20 | /         &self,
+ 21 | |         account_ids: &[String],
+ 22 | |         start_date: NaiveDateTime,
+ 23 | |         end_date: NaiveDateTime,
+ 24 | |         profile_id: &str,
+    | |________________________- trait requires 5 parameters
+
+error[E0050]: method `search_activities` has 7 parameters but the declaration 
+in trait `ActivityRepositoryTrait::search_activities` has 8
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:471:13
+    |
+471 | /             &self,
+472 | |             _page: i64,
+473 | |             _size: i64,
+474 | |             _acc: Option<Vec<String>>,
+475 | |             _typ: Option<Vec<String>>,
+476 | |             _kw: Option<String>,
+477 | |             _sort: Option<ActivitySort>,
+    | |_______________________________________^ expected 8 parameters, found 7
+    |
+   ::: src\activities\activities_traits.rs:27:9
+    |
+ 27 | /         &self,
+ 28 | |         page: i64,
+ 29 | |         page_size: i64,
+ 30 | |         account_id_filter: Option<Vec<String>>,
+...   |
+ 33 | |         sort: Option<Sort>,
+ 34 | |         profile_id: &str,
+    | |________________________- trait requires 8 parameters
+
+error[E0050]: method `create_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::create_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:481:34
+    |
+481 |         async fn create_activity(&self, _n: NewActivity) -> 
+AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^ expected 3 
+parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:36:30
+    |
+ 36 |     async fn create_activity(&self, new_activity: NewActivity, 
+profile_id: &str) -> Result<Activity>;
+    |                              
+-------------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `update_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::update_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:484:34
+    |
+484 |         async fn update_activity(&self, _u: ActivityUpdate) -> 
+AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 
+parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:37:30
+    |
+ 37 |     async fn update_activity(&self, activity_update: ActivityUpdate, 
+profile_id: &str) -> Result<Activity>;
+    |                              
+-------------------------------------------------------- trait requires 3 
+parameters
+
+error[E0050]: method `delete_activity` has 2 parameters but the declaration in 
+trait `ActivityRepositoryTrait::delete_activity` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:487:34
+    |
+487 |         async fn delete_activity(&self, _id: String) -> 
+AppResult<Activity> {
+    |                                  ^^^^^^^^^^^^^^^^^^ expected 3 
+parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:38:30
+    |
+ 38 |     async fn delete_activity(&self, activity_id: String, profile_id: 
+&str) -> Result<Activity>;
+    |                              
+-------------------------------------------- trait requires 3 parameters
+
+error[E0050]: method `bulk_mutate_activities` has 4 parameters but the 
+declaration in trait `ActivityRepositoryTrait::bulk_mutate_activities` has 5
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:491:13
+    |
+491 | /             &self,
+492 | |             _creates: Vec<NewActivity>,
+493 | |             _updates: Vec<ActivityUpdate>,
+494 | |             _delete_ids: Vec<String>,
+    | |____________________________________^ expected 5 parameters, found 4
+    |
+   ::: src\activities\activities_traits.rs:40:9
+    |
+ 40 | /         &self,
+ 41 | |         creates: Vec<NewActivity>,
+ 42 | |         updates: Vec<ActivityUpdate>,
+ 43 | |         delete_ids: Vec<String>,
+ 44 | |         profile_id: &str,
+    | |________________________- trait requires 5 parameters
+
+error[E0050]: method `create_activities` has 2 parameters but the declaration 
+in trait `ActivityRepositoryTrait::create_activities` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:498:36
+    |
+498 |         async fn create_activities(&self, _a: Vec<NewActivity>) -> 
+AppResult<usize> {
+    |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 
+3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:46:32
+    |
+ 46 |     async fn create_activities(&self, activities: Vec<NewActivity>, 
+profile_id: &str) -> Result<usize>;
+    |                                
+----------------------------------------------------- trait requires 3 
+parameters
+
+error[E0050]: method `get_first_activity_date` has 2 parameters but the 
+declaration in trait `ActivityRepositoryTrait::get_first_activity_date` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:502:13
+    |
+502 | /             &self,
+503 | |             _ids: Option<&[String]>,
+    | |___________________________________^ expected 3 parameters, found 2
+    |
+   ::: src\activities\activities_traits.rs:48:9
+    |
+ 48 | /         &self,
+ 49 | |         account_ids: Option<&[String]>,
+ 50 | |         profile_id: &str,
+    | |________________________- trait requires 3 parameters
+
+error[E0050]: method `get_import_mapping` has 2 parameters but the declaration 
+in trait `ActivityRepositoryTrait::get_import_mapping` has 3
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:507:31
+    |
+507 |         fn get_import_mapping(&self, _id: &str) -> 
+AppResult<Option<ActivityImportMapping>> {
+    |                               ^^^^^^^^^^^^^^^^ expected 3 parameters, 
+found 2
+    |
+   ::: src\activities\activities_traits.rs:52:27
+    |
+ 52 |     fn get_import_mapping(&self, account_id: &str, profile_id: &str) -> 
+Result<Option<ImportMapping>>;
+    |                           ----------------------------------------- 
+trait requires 3 parameters
+
+error[E0050]: method `calculate_average_cost` has 3 parameters but the 
+declaration in trait `ActivityRepositoryTrait::calculate_average_cost` has 4
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:513:35
+    |
+513 |         fn calculate_average_cost(&self, _acc: &str, _asset: &str) -> 
+AppResult<Decimal> {
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+expected 4 parameters, found 3
+    |
+   ::: src\activities\activities_traits.rs:55:31
+    |
+ 55 |     fn calculate_average_cost(&self, account_id: &str, asset_id: &str, 
+profile_id: &str) -> Result<Decimal>;
+    |                               
+--------------------------------------------------------- trait requires 4 
+parameters
+
+error[E0050]: method `get_income_activities_data` has 1 parameter but the 
+declaration in trait `ActivityRepositoryTrait::get_income_activities_data` has 
+2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:516:39
+    |
+516 |         fn get_income_activities_data(&self) -> 
+AppResult<Vec<ActivityIncomeData>> {
+    |                                       ^^^^^ expected 2 parameters, found 
+1
+    |
+   ::: src\activities\activities_traits.rs:56:35
+    |
+ 56 |     fn get_income_activities_data(&self, profile_id: &str) -> 
+Result<Vec<IncomeData>>;
+    |                                   ----------------------- trait requires 
+2 parameters
+
+error[E0050]: method `get_first_activity_date_overall` has 1 parameter but the 
+declaration in trait 
+`ActivityRepositoryTrait::get_first_activity_date_overall` has 2
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:519:44
+    |
+519 |         fn get_first_activity_date_overall(&self) -> 
+AppResult<DateTime<Utc>> {
+    |                                            ^^^^^ expected 2 parameters, 
+found 1
+    |
+   ::: src\activities\activities_traits.rs:57:40
+    |
+ 57 |     fn get_first_activity_date_overall(&self, profile_id: &str) -> 
+Result<DateTime<Utc>>;
+    |                                        ----------------------- trait 
+requires 2 parameters
+
+error[E0050]: method `get_all_active_account_snapshots` has 3 parameters but 
+the declaration in trait 
+`SnapshotRepositoryTrait::get_all_active_account_snapshots` has 4
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:677:13
+    |
+677 | /             &self,
+678 | |             start_date: Option<NaiveDate>,
+679 | |             end_date: Option<NaiveDate>,
+    | |_______________________________________^ expected 4 parameters, found 3
+    |
+   ::: src\portfolio\snapshot\snapshot_repository.rs:88:9
+    |
+ 88 | /         &self,
+ 89 | |         start_date: Option<NaiveDate>,
+ 90 | |         end_date: Option<NaiveDate>,
+ 91 | |         profile_id: &str,
+    | |________________________- trait requires 4 parameters
+
+error[E0050]: method `get_valuations_on_date` has 3 parameters but the 
+declaration in trait 
+`valuation_repository::ValuationRepositoryTrait::get_valuations_on_date` has 4
+   --> src\portfolio\valuation\valuation_repository.rs:231:9
+    |
+ 38 | /         &self,
+ 39 | |         account_ids: &[String],
+ 40 | |         date: NaiveDate,
+ 41 | |         profile_id: &str,
+    | |________________________- trait requires 4 parameters
+...
+231 | /         &self,
+232 | |         input_account_ids: &[String],
+233 | |         input_date: NaiveDate,
+    | |_____________________________^ expected 4 parameters, found 3
+
+error[E0599]: no associated function or constant named `spawn_writer` found 
+for struct `WriteHandle` in the current scope
+   --> src\market_data\market_data_repository.rs:648:35
+    |
+648 |         let writer = WriteHandle::spawn_writer(pool.clone());
+    |                                   ^^^^^^^^^^^^ associated function or 
+constant not found in `WriteHandle`
+    |
+   ::: src\db\write_actor.rs:12:1
+    |
+ 12 | pub struct WriteHandle {
+    | ---------------------- associated function or constant `spawn_writer` 
+not found for this struct
+
+error[E0308]: mismatched types
+   --> src\market_data\providers\yahoo_websocket.rs:41:52
+    |
+ 41 |         if let Err(e) = write.send(WsMessage::Text(subscribe_msg)).await 
+{
+    |                                    --------------- ^^^^^^^^^^^^^ 
+expected `Utf8Bytes`, found `String`
+    |                                    |
+    |                                    arguments to this enum variant are 
+incorrect
+    |
+note: tuple variant defined here
+   --> C:\Users\SHARJAH LAPTOPS\.cargo\registry\src\index.crates.io-1949cf8c6b5
+b557f\tungstenite-0.26.2\src\protocol\message.rs:160:5
+    |
+160 |     Text(Utf8Bytes),
+    |     ^^^^
+help: call `Into::into` on this expression to convert `std::string::String` 
+into `Utf8Bytes`
+    |
+ 41 |         if let Err(e) = 
+write.send(WsMessage::Text(subscribe_msg.into())).await {
+    |                                                                 +++++++
+
+error[E0599]: no method named `unwrap_or_else` found for enum `LocalResult<T>` 
+in the current scope
+  --> src\market_data\providers\yahoo_websocket.rs:60:74
+   |
+60 | ...                   let dt = 
+Utc.timestamp_millis_opt(data.time).unwrap_or_else(|| Utc::now());
+   |                                                                    
+^^^^^^^^^^^^^^ method not found in `LocalResult<chrono::DateTime<chrono::Utc>>`
+
+error[E0308]: mismatched types
+   --> src\market_data\providers\alpaca_websocket.rs:38:52
+    |
+ 38 |         if let Err(e) = write.send(WsMessage::Text(auth_msg)).await {
+    |                                    --------------- ^^^^^^^^ expected 
+`Utf8Bytes`, found `String`
+    |                                    |
+    |                                    arguments to this enum variant are 
+incorrect
+    |
+note: tuple variant defined here
+   --> C:\Users\SHARJAH LAPTOPS\.cargo\registry\src\index.crates.io-1949cf8c6b5
+b557f\tungstenite-0.26.2\src\protocol\message.rs:160:5
+    |
+160 |     Text(Utf8Bytes),
+    |     ^^^^
+help: call `Into::into` on this expression to convert `std::string::String` 
+into `Utf8Bytes`
+    |
+ 38 |         if let Err(e) = 
+write.send(WsMessage::Text(auth_msg.into())).await {
+    |                                                            +++++++
+
+error[E0308]: mismatched types
+   --> src\market_data\providers\alpaca_websocket.rs:49:52
+    |
+ 49 |         if let Err(e) = 
+write.send(WsMessage::Text(subscribe_msg.to_string())).await {
+    |                                    --------------- 
+^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Utf8Bytes`, found `String`
+    |                                    |
+    |                                    arguments to this enum variant are 
+incorrect
+    |
+note: tuple variant defined here
+   --> C:\Users\SHARJAH LAPTOPS\.cargo\registry\src\index.crates.io-1949cf8c6b5
+b557f\tungstenite-0.26.2\src\protocol\message.rs:160:5
+    |
+160 |     Text(Utf8Bytes),
+    |     ^^^^
+help: call `Into::into` on this expression to convert `std::string::String` 
+into `Utf8Bytes`
+    |
+ 49 |         if let Err(e) = 
+write.send(WsMessage::Text(subscribe_msg.to_string().into())).await {
+    |                                                                          
+   +++++++
+
+error[E0308]: mismatched types
+   --> src\market_data\providers\polygon_websocket.rs:37:52
+    |
+ 37 |         if let Err(e) = write.send(WsMessage::Text(auth_msg)).await {
+    |                                    --------------- ^^^^^^^^ expected 
+`Utf8Bytes`, found `String`
+    |                                    |
+    |                                    arguments to this enum variant are 
+incorrect
+    |
+note: tuple variant defined here
+   --> C:\Users\SHARJAH LAPTOPS\.cargo\registry\src\index.crates.io-1949cf8c6b5
+b557f\tungstenite-0.26.2\src\protocol\message.rs:160:5
+    |
+160 |     Text(Utf8Bytes),
+    |     ^^^^
+help: call `Into::into` on this expression to convert `std::string::String` 
+into `Utf8Bytes`
+    |
+ 37 |         if let Err(e) = 
+write.send(WsMessage::Text(auth_msg.into())).await {
+    |                                                            +++++++
+
+error[E0308]: mismatched types
+   --> src\market_data\providers\polygon_websocket.rs:49:52
+    |
+ 49 |         if let Err(e) = write.send(WsMessage::Text(subscribe_msg)).await 
+{
+    |                                    --------------- ^^^^^^^^^^^^^ 
+expected `Utf8Bytes`, found `String`
+    |                                    |
+    |                                    arguments to this enum variant are 
+incorrect
+    |
+note: tuple variant defined here
+   --> C:\Users\SHARJAH LAPTOPS\.cargo\registry\src\index.crates.io-1949cf8c6b5
+b557f\tungstenite-0.26.2\src\protocol\message.rs:160:5
+    |
+160 |     Text(Utf8Bytes),
+    |     ^^^^
+help: call `Into::into` on this expression to convert `std::string::String` 
+into `Utf8Bytes`
+    |
+ 49 |         if let Err(e) = 
+write.send(WsMessage::Text(subscribe_msg.into())).await {
+    |                                                                 +++++++
+
+error[E0599]: no method named `unwrap_or_else` found for enum `LocalResult<T>` 
+in the current scope
+  --> src\market_data\providers\polygon_websocket.rs:67:86
+   |
+67 | ...                   let dt = 
+Utc.timestamp_millis_opt(ts_millis).unwrap_or_else(|| Utc::now());
+   |                                                                    
+^^^^^^^^^^^^^^ method not found in `LocalResult<chrono::DateTime<chrono::Utc>>`
+
+error[E0061]: this method takes 4 arguments but 3 arguments were supplied
+   --> src\portfolio\performance\performance_service.rs:134:51
+    |
+134 |           let full_history = 
+self.valuation_service.get_historical_valuations(
+    |  
+___________________________________________________^^^^^^^^^^^^^^^^^^^^^^^^^-
+135 | |             account_id,
+136 | |             start_date_opt,
+137 | |             end_date_opt,
+138 | |         )?;
+    | |_________- argument #4 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\valuation\valuation_service.rs:48:8
+    |
+ 48 |     fn get_historical_valuations(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 53 |         profile_id: &str,
+    |         ----------
+help: provide the argument
+    |
+134 |         let full_history = 
+self.valuation_service.get_historical_valuations(
+...
+137 |             end_date_opt,
+138 ~             /* &str */,
+139 ~         )?;
+    |
+
+error[E0061]: this method takes 5 arguments but 4 arguments were supplied
+   --> src\portfolio\snapshot\snapshot_service.rs:171:76
+    |
+171 |           let (activities_by_account_date, account_ids_with_activity) = 
+self.preprocess_data(
+    |  ________________________________________________________________________
+____^^^^^^^^^^^^^^^-
+172 | |             &accounts_to_process,
+173 | |             &all_activities,
+174 | |             min_activity_date,
+175 | |             calculation_end_date,
+176 | |         )?;
+    | |_________- argument #5 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\snapshot\snapshot_service.rs:313:8
+    |
+313 |     fn preprocess_data(
+    |        ^^^^^^^^^^^^^^^
+...
+319 |         profile_id: &str,
+    |         ----------------
+help: provide the argument
+    |
+171 |         let (activities_by_account_date, account_ids_with_activity) = 
+self.preprocess_data(
+...
+175 |             calculation_end_date,
+176 ~             /* &str */,
+177 ~         )?;
+    |
+
+error[E0061]: this method takes 7 arguments but 6 arguments were supplied
+   --> src\portfolio\snapshot\snapshot_service.rs:199:64
+    |
+199 |           let (_final_holdings_states, keyframes_to_save) = 
+self.calculate_daily_holdings_snapshots(
+    |  ________________________________________________________________^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^-
+200 | |             &accounts_needing_calculation,
+201 | |             &activities_by_account_date,
+202 | |             &start_keyframes,
+...   |
+205 | |             calculation_end_date,
+206 | |         )?;
+    | |_________- argument #7 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\snapshot\snapshot_service.rs:491:8
+    |
+491 |     fn calculate_daily_holdings_snapshots(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+499 |         _profile_id: &str,
+    |         -----------------
+help: provide the argument
+    |
+199 |         let (_final_holdings_states, keyframes_to_save) = 
+self.calculate_daily_holdings_snapshots(
+...
+205 |             calculation_end_date,
+206 ~             /* &str */,
+207 ~         )?;
+    |
+
+warning: variable does not need to be mutable
+   --> src\portfolio\snapshot\snapshot_service.rs:879:13
+    |
+879 |         let mut all_individual_accounts = 
+self.account_repository.list(Some(true), None, profile_id)?;
+    |             ----^^^^^^^^^^^^^^^^^^^^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+error[E0308]: `?` operator has incompatible types
+  --> src\profiles\profiles_repository.rs:29:9
+   |
+28 |       ) -> Result<Profile> {
+   |            --------------- expected `std::result::Result<Profile, 
+errors::Error>` because of return type
+29 | /         self.writer
+30 | |             .exec(move |conn: &mut SqliteConnection| -> Result<Profile> 
+{
+31 | |                 let new_profile = NewProfile {
+32 | |                     id: &id,
+...  |
+48 | |             })
+49 | |             .await?
+   | |___________________^ expected `Result<Profile, Error>`, found `Profile`
+   |
+   = note: `?` operator cannot convert from `Profile` to 
+`std::result::Result<Profile, errors::Error>`
+   = note: expected enum `std::result::Result<Profile, errors::Error>`
+            found struct `Profile`
+help: try removing this `?`
+   |
+49 -             .await?
+49 +             .await
+   |
+help: try wrapping the expression in `Ok`
+   |
+29 ~         Ok(self.writer
+30 |             .exec(move |conn: &mut SqliteConnection| -> Result<Profile> {
+...
+48 |             })
+49 ~             .await?)
+   |
+
+error[E0308]: `?` operator has incompatible types
+   --> src\profiles\profiles_repository.rs:85:9
+    |
+ 84 |       ) -> Result<ProfileShare> {
+    |            -------------------- expected 
+`std::result::Result<ProfileShare, errors::Error>` because of return type
+ 85 | /         self.writer
+ 86 | |             .exec(move |conn: &mut SqliteConnection| -> 
+Result<ProfileShare> {
+ 87 | |                 let new_share = NewProfileShare {
+ 88 | |                     id: &id,
+...   |
+106 | |             })
+107 | |             .await?
+    | |___________________^ expected `Result<ProfileShare, Error>`, found 
+`ProfileShare`
+    |
+    = note: `?` operator cannot convert from `ProfileShare` to 
+`std::result::Result<ProfileShare, errors::Error>`
+    = note: expected enum `std::result::Result<ProfileShare, errors::Error>`
+             found struct `ProfileShare`
+help: try removing this `?`
+    |
+107 -             .await?
+107 +             .await
+    |
+help: try wrapping the expression in `Ok`
+    |
+ 85 ~         Ok(self.writer
+ 86 |             .exec(move |conn: &mut SqliteConnection| -> 
+Result<ProfileShare> {
+...
+106 |             })
+107 ~             .await?)
+    |
+
+error[E0061]: this function takes 2 arguments but 1 argument was supplied
+  --> src\brokers\service.rs:83:21
+   |
+83 |         let saved = BrokerConnectionsRepository::insert_or_update(conn)?;
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^------ 
+argument #2 of type `&str` is missing
+   |
+note: associated function defined here
+  --> src\brokers\repository.rs:30:12
+   |
+30 |     pub fn insert_or_update(
+   |            ^^^^^^^^^^^^^^^^
+31 |         connection: BrokerConnection,
+32 |         profile_id: &str,
+   |         ----------------
+help: provide the argument
+   |
+83 |         let saved = BrokerConnectionsRepository::insert_or_update(conn, 
+/* &str */)?;
+   |                                                                       
+++++++++++++
+
+error[E0308]: mismatched types
+  --> src\accounts\accounts_repository.rs:52:59
+   |
+52 |     async fn update(&self, account_update: AccountUpdate, profile_id: 
+&str) -> Result<Account> {
+   |                                                           ^^^^^^^^^^  
+---- expected due to this
+   |                                                           |
+   |                                                           expected `str`, 
+found `profile_id`
+   |                                                           `profile_id` is 
+interpreted as a unit struct, not a new binding
+   |
+  ::: src\schema.rs:15:9
+   |
+15 |         profile_id -> Text,
+   |         ---------- unit struct defined here
+   |
+help: introduce a new binding instead
+   |
+52 |     async fn update(&self, account_update: AccountUpdate, 
+other_profile_id: &str) -> Result<Account> {
+   |                                                           ++++++
+
+error[E0599]: `schema::accounts::columns::profile_id` doesn't implement 
+`std::fmt::Display`
+  --> src\accounts\accounts_repository.rs:62:64
+   |
+62 |                     
+.filter(accounts::profile_id.eq(profile_id.to_string()))
+   |                                                                ^^^^^^^^^ 
+method cannot be called on `schema::accounts::columns::profile_id` due to 
+unsatisfied trait bounds
+   |
+  ::: src\schema.rs:15:9
+   |
+15 |         profile_id -> Text,
+   |         ---------- method `to_string` not found for this struct because 
+it doesn't satisfy `_: Display` or `schema::accounts::columns::profile_id: 
+ToString`
+   |
+   = note: the following trait bounds were not satisfied:
+           `schema::accounts::columns::profile_id: std::fmt::Display`
+           which is required by `schema::accounts::columns::profile_id: 
+ToString`
+note: the trait `std::fmt::Display` must be implemented
+  --> /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library\core\src\fmt\mod.
+rs:1187:0
+   = help: items from traits can only be used if the trait is implemented and 
+in scope
+   = note: the following trait defines an item `to_string`, perhaps you need 
+to implement it:
+           candidate #1: `ToString`
+
+error[E0308]: mismatched types
+  --> src\accounts\accounts_repository.rs:80:43
+   |
+80 |     fn get_by_id(&self, account_id: &str, profile_id: &str) -> 
+Result<Account> {
+   |                                           ^^^^^^^^^^  ---- expected due 
+to this
+   |                                           |
+   |                                           expected `str`, found 
+`profile_id`
+   |                                           `profile_id` is interpreted as 
+a unit struct, not a new binding
+   |
+  ::: src\schema.rs:15:9
+   |
+15 |         profile_id -> Text,
+   |         ---------- unit struct defined here
+   |
+help: introduce a new binding instead
+   |
+80 |     fn get_by_id(&self, account_id: &str, other_profile_id: &str) -> 
+Result<Account> {
+   |                                           ++++++
+
+error[E0308]: mismatched types
+   --> src\goals\goals_repository.rs:29:35
+    |
+ 29 |     pub fn load_goals_impl(&self, profile_id: &str) -> Result<Vec<Goal>> 
+{
+    |                                   ^^^^^^^^^^  ---- expected due to this
+    |                                   |
+    |                                   expected `str`, found `profile_id`
+    |                                   `profile_id` is interpreted as a unit 
+struct, not a new binding
+    |
+   ::: src\schema.rs:134:9
+    |
+134 |         profile_id -> Text,
+    |         ---------- unit struct defined here
+    |
+help: introduce a new binding instead
+    |
+ 29 |     pub fn load_goals_impl(&self, other_profile_id: &str) -> 
+Result<Vec<Goal>> {
+    |                                   ++++++
+
+error[E0308]: mismatched types
+   --> src\goals\goals_repository.rs:51:26
+    |
+ 51 |     fn load_goals(&self, profile_id: &str) -> Result<Vec<Goal>> {
+    |                          ^^^^^^^^^^  ---- expected due to this
+    |                          |
+    |                          expected `str`, found `profile_id`
+    |                          `profile_id` is interpreted as a unit struct, 
+not a new binding
+    |
+   ::: src\schema.rs:134:9
+    |
+134 |         profile_id -> Text,
+    |         ---------- unit struct defined here
+    |
+help: introduce a new binding instead
+    |
+ 51 |     fn load_goals(&self, other_profile_id: &str) -> Result<Vec<Goal>> {
+    |                          ++++++
+
+error[E0308]: mismatched types
+  --> src\goals\goals_repository.rs:52:30
+   |
+52 |         self.load_goals_impl(profile_id)
+   |              --------------- ^^^^^^^^^^ expected `&str`, found 
+`profile_id`
+   |              |
+   |              arguments to this method are incorrect
+   |
+note: method defined here
+  --> src\goals\goals_repository.rs:29:12
+   |
+29 |     pub fn load_goals_impl(&self, profile_id: &str) -> Result<Vec<Goal>> {
+   |            ^^^^^^^^^^^^^^^        ----------------
+
+error[E0308]: mismatched types
+   --> src\goals\goals_repository.rs:97:55
+    |
+ 97 |     fn load_allocations_for_non_achieved_goals(&self, profile_id: &str) 
+-> Result<Vec<GoalsAllocation>> {
+    |                                                       ^^^^^^^^^^  ---- 
+expected due to this
+    |                                                       |
+    |                                                       expected `str`, 
+found `profile_id`
+    |                                                       `profile_id` is 
+interpreted as a unit struct, not a new binding
+    |
+   ::: src\schema.rs:134:9
+    |
+134 |         profile_id -> Text,
+    |         ---------- unit struct defined here
+    |
+help: introduce a new binding instead
+    |
+ 97 |     fn load_allocations_for_non_achieved_goals(&self, other_profile_id: 
+&str) -> Result<Vec<GoalsAllocation>> {
+    |                                                       ++++++
+
+error[E0308]: mismatched types
+  --> src\goals\goals_repository.rs:98:59
+   |
+98 |         self.load_allocations_for_non_achieved_goals_impl(profile_id)
+   |              -------------------------------------------- ^^^^^^^^^^ 
+expected `&str`, found `profile_id`
+   |              |
+   |              arguments to this method are incorrect
+   |
+note: method defined here
+  --> src\goals\goals_repository.rs:34:12
+   |
+34 |     pub fn load_allocations_for_non_achieved_goals_impl(&self, 
+profile_id_param: &str) -> Result<Vec<GoalsAllocation>> {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        
+----------------------
+
+error[E0061]: this method takes 1 argument but 0 arguments were supplied
+  --> src\portfolio\income\income_service.rs:55:57
+   |
+55 |         let activities = match 
+self.activity_repository.get_income_activities_data() {
+   |                                                         
+^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `&str` is missing
+   |
+note: method defined here
+  --> src\activities\activities_traits.rs:56:8
+   |
+56 |     fn get_income_activities_data(&self, profile_id: &str) -> 
+Result<Vec<IncomeData>>;
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^        ----------
+help: provide the argument
+   |
+55 |         let activities = match 
+self.activity_repository.get_income_activities_data(/* &str */) {
+   |                                                                           
+         ++++++++++
+
+error[E0061]: this method takes 1 argument but 0 arguments were supplied
+  --> src\portfolio\income\income_service.rs:74:58
+   |
+74 |         let oldest_date = match 
+self.activity_repository.get_first_activity_date_overall() {
+   |                                                          
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `&str` is missing
+   |
+note: method defined here
+  --> src\activities\activities_traits.rs:57:8
+   |
+57 |     fn get_first_activity_date_overall(&self, profile_id: &str) -> 
+Result<DateTime<Utc>>;
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ----------
+help: provide the argument
+   |
+74 |         let oldest_date = match 
+self.activity_repository.get_first_activity_date_overall(/* &str */) {
+   |                                                                           
+               ++++++++++
+
+error[E0061]: this method takes 4 arguments but 3 arguments were supplied
+  --> src\portfolio\performance\performance_service.rs:82:51
+   |
+82 |           let full_history = 
+self.valuation_service.get_historical_valuations(
+   |  
+___________________________________________________^^^^^^^^^^^^^^^^^^^^^^^^^-
+83 | |             account_id,
+84 | |             start_date_opt,
+85 | |             end_date_opt,
+86 | |         )?;
+   | |_________- argument #4 of type `&str` is missing
+   |
+note: method defined here
+  --> src\portfolio\valuation\valuation_service.rs:48:8
+   |
+48 |     fn get_historical_valuations(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+53 |         profile_id: &str,
+   |         ----------
+help: provide the argument
+   |
+82 |         let full_history = 
+self.valuation_service.get_historical_valuations(
+...
+85 |             end_date_opt,
+86 ~             /* &str */,
+87 ~         )?;
+   |
+
+error[E0061]: this method takes 2 arguments but 1 argument was supplied
+   --> src\portfolio\performance\performance_service.rs:736:14
+    |
+736 |             .get_latest_valuations(&ids_to_fetch)?;
+    |              ^^^^^^^^^^^^^^^^^^^^^--------------- argument #2 of type 
+`&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\valuation\valuation_service.rs:65:8
+    |
+ 65 |     fn get_latest_valuations(
+    |        ^^^^^^^^^^^^^^^^^^^^^
+...
+ 68 |         profile_id: &str,
+    |         ----------
+help: provide the argument
+    |
+736 |             .get_latest_valuations(&ids_to_fetch, /* &str */)?;
+    |                                                 ++++++++++++
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src\portfolio\performance\performance_service.rs:762:18
+    |
+762 |                 .get_valuations_on_date(&ids, prev_date)
+    |                  ^^^^^^^^^^^^^^^^^^^^^^----------------- argument #3 of 
+type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\valuation\valuation_service.rs:71:8
+    |
+ 71 |     fn get_valuations_on_date(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+...
+ 75 |         profile_id: &str,
+    |         ----------
+help: provide the argument
+    |
+762 |                 .get_valuations_on_date(&ids, prev_date, /* &str */)
+    |                                                        ++++++++++++
+
+error[E0061]: this method takes 2 arguments but 1 argument was supplied
+   --> src\portfolio\snapshot\snapshot_service.rs:288:18
+    |
+288 |                 
+.get_activities_by_account_ids(&account_ids_to_fetch_activities)?
+    |                  
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^---------------------------------- argument #2 of 
+type `&str` is missing
+    |
+note: method defined here
+   --> src\activities\activities_traits.rs:15:8
+    |
+ 15 |     fn get_activities_by_account_ids(&self, account_ids: &[String], 
+profile_id: &str) -> Result<Vec<Activity>>;
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                
+----------
+help: provide the argument
+    |
+288 |                 
+.get_activities_by_account_ids(&account_ids_to_fetch_activities, /* &str */)?
+    |                                                                          
+      ++++++++++++
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src\portfolio\snapshot\snapshot_service.rs:984:14
+    |
+984 |         self.calculate_holdings_snapshots_internal(account_ids, false)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-------------------- 
+argument #3 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\snapshot\snapshot_service.rs:136:14
+    |
+136 |     async fn calculate_holdings_snapshots_internal(
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+140 |         profile_id: &str,
+    |         ----------------
+help: provide the argument
+    |
+984 |         self.calculate_holdings_snapshots_internal(account_ids, false, 
+/* &str */)
+    |                                                                      
+++++++++++++
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src\portfolio\snapshot\snapshot_service.rs:992:14
+    |
+992 |         self.calculate_holdings_snapshots_internal(account_ids, true)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^------------------- 
+argument #3 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\snapshot\snapshot_service.rs:136:14
+    |
+136 |     async fn calculate_holdings_snapshots_internal(
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+140 |         profile_id: &str,
+    |         ----------------
+help: provide the argument
+    |
+992 |         self.calculate_holdings_snapshots_internal(account_ids, true, /* 
+&str */)
+    |                                                                     
+++++++++++++
+
+error[E0063]: missing field `profile_id` in initializer of `Account`
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:750:9
+    |
+750 |         Account {
+    |         ^^^^^^^ missing `profile_id`
+
+error[E0061]: this method takes 1 argument but 0 arguments were supplied
+   --> src\portfolio\snapshot\snapshot_service_tests.rs:872:39
+    |
+872 |         let result = 
+snapshot_service.calculate_total_portfolio_snapshots().await;
+    |                                       
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `&str` is missing
+    |
+note: method defined here
+   --> src\portfolio\snapshot\snapshot_service.rs:73:14
+    |
+ 73 |     async fn calculate_total_portfolio_snapshots(&self, profile_id: 
+&str) -> Result<usize>;
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ----------
+help: provide the argument
+    |
+872 |         let result = 
+snapshot_service.calculate_total_portfolio_snapshots(/* &str */).await;
+    |                                                                          
+ ++++++++++
+
+error[E0061]: this method takes 1 argument but 0 arguments were supplied
+    --> src\portfolio\snapshot\snapshot_service_tests.rs:1073:39
+     |
+1073 |         let result = 
+snapshot_service.calculate_total_portfolio_snapshots().await;
+     |                                       
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-- argument #1 of type `&str` is missing
+     |
+note: method defined here
+    --> src\portfolio\snapshot\snapshot_service.rs:73:14
+     |
+  73 |     async fn calculate_total_portfolio_snapshots(&self, profile_id: 
+&str) -> Result<usize>;
+     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ----------
+help: provide the argument
+     |
+1073 |         let result = 
+snapshot_service.calculate_total_portfolio_snapshots(/* &str */).await;
+     |                                                                         
+  ++++++++++
+
+error[E0061]: this method takes 2 arguments but 1 argument was supplied
+    --> src\portfolio\snapshot\snapshot_service_tests.rs:1159:25
+     |
+1159 |         let saved = 
+svc.calculate_holdings_snapshots(None).await.unwrap();
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^------ argument #2 
+of type `&str` is missing
+     |
+note: method defined here
+    --> src\portfolio\snapshot\snapshot_service.rs:28:14
+     |
+  28 |     async fn calculate_holdings_snapshots(&self, account_ids: 
+Option<&[String]>, profile_id: &str) -> Result<usize>;
+     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^                               
+         ----------
+help: provide the argument
+     |
+1159 |         let saved = svc.calculate_holdings_snapshots(None, /* &str 
+*/).await.unwrap();
+     |                                                          ++++++++++++
+
+error[E0061]: this method takes 2 arguments but 1 argument was supplied
+    --> src\portfolio\snapshot\snapshot_service_tests.rs:1217:25
+     |
+1217 |         let saved = 
+svc.calculate_holdings_snapshots(None).await.unwrap();
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^------ argument #2 
+of type `&str` is missing
+     |
+note: method defined here
+    --> src\portfolio\snapshot\snapshot_service.rs:28:14
+     |
+  28 |     async fn calculate_holdings_snapshots(&self, account_ids: 
+Option<&[String]>, profile_id: &str) -> Result<usize>;
+     |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^                               
+         ----------
+help: provide the argument
+     |
+1217 |         let saved = svc.calculate_holdings_snapshots(None, /* &str 
+*/).await.unwrap();
+     |                                                          ++++++++++++
+
+error[E0308]: mismatched types
+   --> src\portfolio\valuation\valuation_repository.rs:173:79
+    |
+173 |         let resolved_account_ids: Vec<String> = 
+input_account_ids.iter().map(|id| {
+    |                                                                          
+     ^^
+    |                                                                          
+     |
+    |                                                                          
+     expected `String`, found `id`
+    |                                                                          
+     expected due to this
+    |                                                                          
+     `id` is interpreted as a unit struct, not a new binding
+    |
+   ::: src\schema.rs:112:9
+    |
+112 |         id -> Text,
+    |         -- unit struct defined here
+    |
+help: introduce a new binding instead
+    |
+173 |         let resolved_account_ids: Vec<String> = 
+input_account_ids.iter().map(|other_id| {
+    |                                                                          
+     ++++++
+
+error[E0369]: binary operation `==` cannot be applied to type 
+`daily_account_valuation::columns::id`
+   --> src\portfolio\valuation\valuation_repository.rs:174:19
+    |
+174 |             if id == crate::constants::PORTFOLIO_TOTAL_ACCOUNT_ID {
+    |                -- ^^ -------------------------------------------- &str
+    |                |
+    |                daily_account_valuation::columns::id
+    |
+note: an implementation of `PartialEq<&str>` might be missing for 
+`daily_account_valuation::columns::id`
+   --> src\schema.rs:112:9
+    |
+112 |         id -> Text,
+    |         ^^ must implement `PartialEq<&str>`
+    = note: this error originates in the macro `diesel::table` (in Nightly 
+builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: `daily_account_valuation::columns::id` doesn't implement 
+`std::fmt::Display`
+   --> src\portfolio\valuation\valuation_repository.rs:177:20
+    |
+177 |                 id.to_string()
+    |                    ^^^^^^^^^ method cannot be called on 
+`daily_account_valuation::columns::id` due to unsatisfied trait bounds
+    |
+   ::: src\schema.rs:112:9
+    |
+112 |         id -> Text,
+    |         -- method `to_string` not found for this struct because it 
+doesn't satisfy `_: Display` or `daily_account_valuation::columns::id: 
+ToString`
+    |
+    = note: the following trait bounds were not satisfied:
+            `daily_account_valuation::columns::id: std::fmt::Display`
+            which is required by `daily_account_valuation::columns::id: 
+ToString`
+note: the trait `std::fmt::Display` must be implemented
+   --> /rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/library\core\src\fmt\mod
+.rs:1187:0
+    = help: items from traits can only be used if the trait is implemented and 
+in scope
+    = note: the following trait defines an item `to_string`, perhaps you need 
+to implement it:
+            candidate #1: `ToString`
+
+error: lifetime may not live long enough
+   --> src\activities\activities_repository.rs:179:13
+    |
+110 |         let create_base_query = move |_conn: &SqliteConnection| {
+    |                                 -------------------------------
+    |                                 |                             |
+    |                                 |                             return 
+type of closure is 
+diesel::query_builder::select_statement::boxed::BoxedSelectStatement<'2, 
+((diesel::sql_types::Text, diesel::sql_types::Text, diesel::sql_types::Text, 
+diesel::sql_types::Text, diesel::sql_types::Text, diesel::sql_types::Text, 
+diesel::sql_types::Text, diesel::sql_types::Text, diesel::sql_types::Text, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, diesel::sql_types::Bool, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, diesel::sql_types::Text, 
+diesel::sql_types::Text), (diesel::sql_types::Text, diesel::sql_types::Text, 
+diesel::sql_types::Text, diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Text, diesel::sql_types::Bool, diesel::sql_types::Bool, 
+diesel::sql_types::Timestamp, diesel::sql_types::Timestamp, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Text), (diesel::sql_types::Text, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, diesel::sql_types::Text, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Timestamp, diesel::sql_types::Timestamp, 
+diesel::sql_types::Text, diesel::sql_types::Text, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>, 
+diesel::sql_types::Nullable<diesel::sql_types::Text>)), diesel::query_builder::
+from_clause::FromClause<query_source::joins::JoinOn<query_source::joins::Join<q
+uery_source::joins::JoinOn<query_source::joins::Join<schema::activities::table,
+ schema::accounts::table, query_source::joins::Inner>, diesel::expression::grou
+ped::Grouped<diesel::expression::operators::Eq<schema::activities::columns::acc
+ount_id, schema::accounts::columns::id>>>, schema::assets::table, 
+query_source::joins::Inner>, diesel::expression::grouped::Grouped<diesel::expre
+ssion::operators::Eq<schema::activities::columns::asset_id, 
+schema::assets::columns::id>>>>, Sqlite>
+    |                                 lifetime `'1` represents this closure's 
+body
+...
+179 |             query
+    |             ^^^^^ returning this value requires that `'1` must outlive 
+`'2`
+    |
+    = note: closure implements `Fn`, so references to captured variables can't 
+escape the closure
+
+warning: unused variable: `profile_id`
+   --> src\portfolio\performance\performance_service.rs:282:9
+    |
+282 |         profile_id: &str,
+    |         ^^^^^^^^^^ help: if this is intentional, prefix it with an 
+underscore: `_profile_id`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by 
+default
+
+warning: unused variable: `profile_id`
+    --> src\portfolio\snapshot\snapshot_service.rs:1001:9
+     |
+1001 |         profile_id: &str,
+     |         ^^^^^^^^^^ help: if this is intentional, prefix it with an 
+underscore: `_profile_id`
+
+warning: unused variable: `profile_id`
+    --> src\portfolio\snapshot\snapshot_service.rs:1126:9
+     |
+1126 |         profile_id: &str,
+     |         ^^^^^^^^^^ help: if this is intentional, prefix it with an 
+underscore: `_profile_id`
+
+Some errors have detailed explanations: E0046, E0050, E0061, E0063, E0308, 
+E0369, E0432, E0599.
+For more information about an error, try `rustc --explain E0046`.
+error: could not compile `investwise_core` (lib test) due to 93 previous 
+errors; 13 warnings emitted

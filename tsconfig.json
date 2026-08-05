@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    // Main app specific settings
+    "types": ["@tauri-apps/api", "vitest/globals"],
+    "noEmit": true,
+    "composite": false, // Main app doesn't need to be composite
+
+    // Path mapping for main app
+    "paths": {
+      "@/*": ["./src/*"],
+      "@investwise/addon-sdk": ["packages/addon-sdk/src"],
+      "@investwise/ui": ["packages/ui/src"],
+      "@investwise/ui/*": ["packages/ui/src/*"],
+      "@/components/ui/*": ["packages/ui/src/components/ui/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/addon-sdk" }
+  ]
+}

@@ -1,0 +1,13 @@
+packages:
+  - packages/*
+  - addons/*
+
+allowBuilds:
+  '@tailwindcss/oxide': true
+  esbuild: true
+  msw: true
+
+ignoredBuiltDependencies:
+  - "@tailwindcss/oxide"
+  - esbuild
+  - msw
